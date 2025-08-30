@@ -1,0 +1,375 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@theme inline {
+  --breakpoint-nav: 1024px;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-ring: hsl(var(--ring));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+
+  --breakpoint-nav: 1024px;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 270 70% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 270 30% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 270 30% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 270 30% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 270 70% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 270 70% 60%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 270 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Recreate Tailwind v3 container settings (center + 2rem padding, 2xl=1400px) */
+@layer utilities {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrolling styles */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Make sure TabsList is properly scrollable */
+[role="tablist"] {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+[role="tablist"]::-webkit-scrollbar {
+  display: none;
+}
+
+[role="tab"] {
+  flex-shrink: 0;
+}
+
+/* Custom scrolling styles for tabs */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.scrollable-tabs {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Skills tab content */
+.skills-content > div:not(.hidden) {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Override shadcn focus styles for form elements */
+:focus-visible {
+  outline: none !important;
+}
+
+@layer base {
+  input,
+  textarea,
+  select {
+    border-width: 2px !important;
+    border-style: solid !important;
+    border-color: hsl(var(--border));
+  }
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  --tw-ring-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-width: 0px !important;
+  --tw-ring-offset-color: transparent !important;
+  --tw-ring-width: 0px !important;
+  box-shadow: none !important;
+  border-color: hsl(var(--primary)) !important;
+  border-width: 2px !important;
+}
+
+button:focus {
+  outline: none !important;
+  --tw-ring-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-width: 0px !important;
+  --tw-ring-offset-color: transparent !important;
+  --tw-ring-width: 0px !important;
+  box-shadow: none !important;
+}
+
+button:focus:not(.skills-tab) {
+  border-color: hsl(var(--primary)) !important;
+  border-width: 2px !important;
+}
+
+/* Override sheet content styles for mobile nav */
+.sheet-content {
+  --focus-color: hsl(var(--primary)) !important;
+}
+
+[data-radix-popper-content-wrapper] {
+  --focus-color: hsl(var(--primary)) !important;
+}
+
+/* Hide the default close button in the custom sheet content */
+.custom-sheet-content > button[aria-label="Close"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Custom styles for sheet close button */
+.sheet-close-button {
+  position: absolute !important;
+  top: 1.25rem !important;
+  right: 1.25rem !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  background: transparent !important;
+  color: hsl(var(--foreground)) !important;
+  opacity: 0.7 !important;
+  transition: opacity 0.2s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  z-index: 100 !important;
+  cursor: pointer !important;
+}
+
+.sheet-close-button:hover,
+.sheet-close-button:focus {
+  opacity: 1 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.sheet-close-button svg {
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+}
+
+/* Active navigation styles */
+.active-nav-link {
+  color: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+}
+
+/* Navigation styles */
+header nav a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Dark mode specific styles */
+.dark .bg-primary\/10 {
+  background-color: hsl(var(--primary) / 0.2);
+}
+
+.dark .border-primary\/20 {
+  border-color: hsl(var(--primary) / 0.3);
+}
+
+/* Skills tabs styling to match navigation */
+.skills-tab {
+  height: 40px;
+  display: inline-flex !important;
+  align-items: center;
+  padding: 0 0.75rem;
+  font-weight: 500;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  font-size: 0.875rem;
+  border-bottom-width: 3px;
+  transition: color 0.2s, border-color 0.2s;
+  position: relative;
+  outline: none !important;
+}
+
+.skills-tab.active {
+  color: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+}
+
+.skills-tab:not(.active) {
+  border-color: transparent;
+}
+
+.skills-tab:not(.active):hover {
+  color: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+}
+
+/* Comprehensive focus state fixes for skills tabs */
+.skills-tab:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.skills-tab:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.skills-tab.active:focus,
+.skills-tab.active:focus-visible {
+  color: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove all outlines and focus rings from skills tabs */
+.scrollable-tabs button {
+  outline: none !important;
+}
+
+.scrollable-tabs button:focus,
+.scrollable-tabs button:focus-visible,
+.scrollable-tabs button:active,
+.scrollable-tabs button:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+/* Language switcher styles */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.language-switcher button {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.language-switcher button.active {
+  color: hsl(var(--primary));
+  background-color: hsl(var(--primary) / 0.1);
+}
